@@ -133,24 +133,65 @@ const diagPlugin = {
 const labelPlugin = {
   id:"labels2",
   afterDraw(ch) {
-    const {ctx,scales} = ch;
+    const {ctx, scales, chartArea} = ch;
+    const placed = [];
+
     ctx.save();
-    ctx.font="500 10px var(--font-sans,sans-serif)";
+    ctx.font = "500 10px var(--font-sans,sans-serif)";
+
     ch.data.datasets.forEach(ds => {
       ds.data.forEach(pt => {
         const d = pt.meta;
-        if (d.status==="stable") return;
-        const xp=scales.x.getPixelForValue(pt.x);
-        const yp=scales.y.getPixelForValue(pt.y);
-        const r=pt.r||8;
-        const label=d.node.replace(/_/g," ");
-        const tw=ctx.measureText(label).width;
-        let tx=xp+r+4, ty=yp-r-4;
-        if (pt.x>0.65) tx=xp-tw-r-4;
-        ctx.fillStyle=catCol[d.cat]||"#555";
-        ctx.fillText(label,tx,ty);
+        if (d.status === "stable") return;
+
+        // 너무 작은 빈도 라벨은 숨김
+        if (d.freq < 2 && d.status !== "decline") return;
+
+        const xp = scales.x.getPixelForValue(pt.x);
+        const yp = scales.y.getPixelForValue(pt.y);
+        const r = pt.r || 8;
+        const label = d.node.replace(/_/g, " ");
+        const tw = ctx.measureText(label).width;
+        const th = 11;
+
+        let tx = xp + r + 5;
+        let ty = yp - r - 5;
+
+        if (pt.x > 0.65) tx = xp - tw - r - 5;
+
+        // 충돌하면 아래로 밀기
+        let box = {x: tx, y: ty - th, w: tw, h: th};
+        let tries = 0;
+
+        while (
+          placed.some(p =>
+            box.x < p.x + p.w &&
+            box.x + box.w > p.x &&
+            box.y < p.y + p.h &&
+            box.y + box.h > p.y
+          ) &&
+          tries < 8
+        ) {
+          ty += 13;
+          box = {x: tx, y: ty - th, w: tw, h: th};
+          tries++;
+        }
+
+        // 그래프 영역 밖으로 나가면 숨김
+        if (
+          box.x < chartArea.left ||
+          box.x + box.w > chartArea.right ||
+          box.y < chartArea.top ||
+          box.y + box.h > chartArea.bottom
+        ) return;
+
+        placed.push(box);
+
+        ctx.fillStyle = catCol[d.cat] || "#555";
+        ctx.fillText(label, tx, ty);
       });
     });
+
     ctx.restore();
   }
 };
