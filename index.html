@@ -42,32 +42,47 @@ h2{
 #top{
   left:16px;
   top:16px;
-  width:760px;     /* 축소 */
-  display:block;
+  width:1050px;
 }
 
 #controls{
   display:grid;
   grid-template-columns:repeat(4, 1fr);
-  gap:6px;
-  margin-top:10px;
+  gap:8px;
+  margin-top:12px;
 }
      
-button{
  background:#18243b;
-  color:#f3f6ff;
-  border:1px solid rgba(255,255,255,.13);
+  color:#e5e7eb;
+  border:1px solid rgba(255,255,255,.12);
   border-radius:999px;
-  padding:4px 6px;
-  font-size:11px;
-  height:28px;
+
+  height:38px;
+  padding:0 14px;
+
+  font-size:13px;
+  font-weight:500;
+
   cursor:pointer;
-  min-width:0;
+  transition:all .2s ease;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-  
-button.active{background:#20e0cf;
-              color:#021110;
-              font-weight:800}
+
+button:hover{
+  background:#223252;
+  border-color:rgba(255,255,255,.2);
+}
+
+button.active{
+  background:#2fd0cb;
+  box-shadow:0 0 20px rgba(47,208,203,.35);
+  color:#021110;
+  border-color:#2fd0cb;
+  font-weight:700;
+}
 
 #legend{
   right:16px;
