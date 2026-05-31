@@ -2,7 +2,7 @@
 3D Network Analysis: Pre/Post COVID 
 [Scatter Plot: Pre/Post COVID](https://seirah-yang.github.io/3D-Network-Analysis/)
 
-[Network-Analysis_3D version]()
+[Network-Analysis_3D version](https://seirah-yang.github.io/3D-Network-Analysis/)
 ## 입력 데이터
     1) rbqm_semantic_nodes.csv 
           → 노드 ID, 카테고리, 문헌 빈도(doc_frequency), 연결 강도(degree_strength), 매개 중심성(betweenness_centrality)
