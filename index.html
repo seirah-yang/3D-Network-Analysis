@@ -4,40 +4,149 @@
 <head>
 <meta charset="utf-8"/>
 <title>RBQM COVID Gap Network</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;overflow:hidden;background:#07101f;color:#f3f6ff;font-family:Arial,sans-serif}
-#scene{position:absolute;inset:0}
-.panel{position:absolute;background:rgba(13,20,35,.92);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:14px;box-shadow:0 18px 44px rgba(0,0,0,.35)}
-#top{left:16px;top:16px;width:330px;display:block}
-h1{margin:0;font-size:18px} .sub{font-size:12px;color:#aab4c5;margin-top:5px;line-height:1.45}
-button{background:#18243b;color:#f3f6ff;border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:8px 10px;font-size:12px;cursor:pointer}
-button.active{background:#20e0cf;color:#021110;font-weight:800}
-#controls{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
+body{margin:0;
+     overflow:hidden;
+     background:#07101f;color:#f3f6ff;
+     font-family: 'Inter', sans-serif;}
+  
+#scene{position:absolute;
+       inset:0}
+.panel{position:absolute;
+       background:rgba(13,20,35,.92);
+       border:1px solid rgba(255,255,255,.13);
+       border-radius:16px;
+       padding:14px;
+       box-shadow:0 18px 44px rgba(0,0,0,.35)}
+  
+#top{left:16px;
+     top:16px;
+     width:250px;
+     display:block}
+  
+h1{
+  margin:0;
+  font-size:18px;
+  font-weight:700;
+}
+
+h2{
+  font-weight:600;
+}
+  
+.sub{font-size:13px;color:#aab4c5;margin-top:5px;line-height:1.5}
+  
+button{background:#18243b;
+       color:#f3f6ff;
+       border:1px solid rgba(255,255,255,.13);
+       border-radius:999px;
+       padding:8px 10px;
+       font-size:12px;
+       cursor:pointer}
+  
+button.active{background:#20e0cf;
+              color:#021110;
+              font-weight:800}
+
 #legend{right:16px;top:16px;width:300px;font-size:12px;color:#aab4c5}
-#info{left:16px;bottom:16px;width:330px;max-height:43vh;overflow:auto;font-size:12px;color:#aab4c5}
+
+#controls{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
+
+#info{
+  left:16px;
+  bottom:16px;
+  width:250px;
+  max-height:32vh;
+  overflow:auto;
+  font-size:12px;
+  color:#aab4c5;
+}
+  
 #axis{display:none}
 #stats{display:none}
-b{color:#f3f6ff} .row{display:flex;align-items:center;gap:8px;margin:8px 0} .dot{width:12px;height:12px;border-radius:50%;display:inline-block} .line{width:24px;height:4px;border-radius:4px;display:inline-block}
-.kv{display:grid;grid-template-columns:155px 1fr;gap:6px 10px} .kv b{font-size:12px}
-#qtl{right:16px;bottom:16px;width:370px;max-height:48vh;overflow:auto;font-size:12px;color:#aab4c5}
-.qtl-card{border:1px solid rgba(255,184,0,.48);border-radius:12px;padding:12px;margin-top:12px;background:rgba(255,184,0,.06);line-height:1.5}
-.qtl-viz{display:grid;grid-template-columns:115px 1fr;gap:14px;align-items:center;margin-top:14px}
-.qtl-orb{position:relative;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #8fffd1 0%, #00d084 35%, #087e5a 72%);box-shadow:0 0 32px rgba(0,208,132,.32)}
-.qtl-orb:after{content:"";position:absolute;inset:-14px;border:8px solid #00d084;border-radius:50%;opacity:.85}
-.qtl-line{display:flex;align-items:center;gap:8px;margin:8px 0;line-height:1.35}
-.qtl-dot{width:10px;height:10px;border-radius:50%;background:#00d084;display:inline-block;flex:none}
+b{color:#f3f6ff}
+.row{display:flex;align-items:center;gap:8px;margin:8px 0} 
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block} 
+.line{width:24px;height:4px;border-radius:4px;display:inline-block}
+.kv{display:grid;grid-template-columns:155px 1fr;gap:6px 10px} 
+.kv b{font-size:12px}
+
+#qtl{
+  left:16px;
+  bottom:16px;
+  width:250px;
+  max-height:48vh;
+  overflow:auto;
+  font-size:12px;
+  color:#aab4c5
+}
+  
+.qtl-card{border:1px solid rgba(255,184,0,.48);
+          border-radius:12px;
+          padding:12px;
+          margin-top:12px;
+          background:rgba(255,184,0,.06);
+          line-height:1.5}
+.qtl-viz{display:grid;
+         grid-template-columns:115px 1fr;
+         gap:14px;
+         align-items:center;
+         margin-top:14px}
+.qtl-orb{position:relative;
+         width:96px;
+         height:96px;
+         border-radius:50%;
+         background:radial-gradient(circle at 35% 30%, #8fffd1 0%, #00d084 35%, #087e5a 72%);
+         box-shadow:0 0 32px rgba(0,208,132,.32)}
+.qtl-orb:after{content:"";
+               position:absolute;
+               inset:-14px;border:8px solid #00d084;
+               border-radius:50%;
+               opacity:.85}
+.qtl-line{display:flex;
+          align-items:center;
+          gap:8px;
+          margin:8px 0;
+          line-height:1.35}
+.qtl-dot{width:10px;
+         height:10px;
+         border-radius:50%;
+         background:#00d084;
+         display:inline-block;
+         flex:none}
 .qtl-dot.yellow{background:#ffb000}
-#tooltip{position:absolute;display:none;pointer-events:none;background:#0f172a;border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:8px 10px;font-size:12px;z-index:5}
-.axisrow{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:8px;text-align:center} .axisrow span{padding:6px 4px;border:1px solid rgba(255,255,255,.13);border-radius:10px;background:rgba(255,255,255,.04)}
+  
+#tooltip{position:absolute;
+         display:none;pointer-events:none;
+         background:#0f172a;
+         border:1px solid rgba(255,255,255,.13);
+         border-radius:10px;padding:8px 10px;
+         font-size:12px;z-index:5}
+.axisrow{display:grid;
+         grid-template-columns:repeat(5,1fr);
+         gap:4px;
+         margin-top:8px;
+         text-align:center} 
+.axisrow span{padding:6px 4px;
+              border:1px solid rgba(255,255,255,.13);
+              border-radius:10px;
+              background:rgba(255,255,255,.04)}
 </style>
 </head>
 <body>
+  
 <div id="scene"></div><div id="tooltip"></div>
 <div id="top" class="panel">
   <div>
     <h1>Gap layout</h1>
     <div class="sub">Node 위치 자체가 gap 해석입니다. 전체 co-occurrence network가 아니라 COVID 전후 변화 구조를 보여줍니다.</div>
   </div>
+  
 <div id="controls">
 <button class="active" data-f="all">All</button><button data-f="new">New</button>
   <button data-f="rise">Rise</button><button data-f="decline">Decline</button>
@@ -111,10 +220,18 @@ function displayLabel(n){
 function setInfo(n){info.innerHTML=`<h2 style="margin-top:0;color:#f3f6ff">${displayLabel(n)}</h2><div class="kv"><span>Status</span><b>${n.status_label}</b><span>Category</span><b>${n.category}</b><span>Pre-COVID sum</span><b>${n.pre_sum.toFixed(3)}</b><span>Post-COVID sum</span><b>${n.post_sum.toFixed(3)}</b><span>Post - Pre</span><b>${n.post_vs_pre_covid.toFixed(3)}</b><span>Documents</span><b>${n.doc_frequency}</b><span>Mentions</span><b>${n.mention_frequency}</b><span>Degree centrality</span><b>${n.degree_centrality.toFixed(3)}</b></div><div class="sub" style="margin-top:12px">이 위치는 COVID Gap Network 기준입니다. New/Rise는 오른쪽, Decline/Pre-only는 왼쪽에 배치됩니다.</div>`}
 function filter(f){document.querySelectorAll("button[data-f]").forEach(b=>b.classList.toggle("active",b.dataset.f===f)); nodesG.children.forEach(o=>{if(o.userData.kind==="node"){const v=f==="all"||o.userData.status===f||f.endsWith("_edges"); o.visible=v; o.material.transparent=true; o.material.opacity=v?1:.12} if(o.userData.kind==="ring"){const p=nodeById.get(o.userData.parent);o.visible=f==="all"||p.status===f||f==="post_edges"}}); labelsG.children.forEach(o=>{const p=nodeById.get(o.userData.parent);o.visible=f==="all"||p.status===f||f.endsWith("_edges")}); edgesG.children.forEach(o=>{let v=f==="all"; if(f==="post_edges")v=o.userData.status==="post_emergent"; else if(f==="persistent_edges")v=o.userData.status==="persistent"; else if(!f.endsWith("_edges")&&f!=="all")v=nodeById.get(o.userData.source)?.status===f||nodeById.get(o.userData.target)?.status===f; o.visible=v; o.material.opacity=v?(o.userData.status==="post_emergent"?.98:.78):.08})}
 document.querySelectorAll("button[data-f]").forEach(b=>b.onclick=()=>filter(b.dataset.f));
-addEventListener("pointermove",e=>{mouse.x=e.clientX/innerWidth*2-1;mouse.y=-(e.clientY/innerHeight)*2+1;ray.setFromCamera(mouse,camera);const hits=ray.intersectObjects(nodesG.children.filter(o=>o.userData.kind==="node"&&o.visible)); if(hits.length){hovered=hits[0].object.userData;tip.style.display="block";tip.style.left=e.clientX+12+"px";tip.style.top=e.clientY+12+"px";tip.innerHTML=`<b>${displayLabel(hovered)}</b><br>${hovered.status_label}<br>Pre ${hovered.pre_sum.toFixed(3)} · Post ${hovered.post_sum.toFixed(3)}<br>Post-Pre ${hovered.post_vs_pre_covid.toFixed(3)}`;} else {hovered=null;tip.style.display="none";}});
+addEventListener("pointermove",e=>{mouse.x=e.clientX/innerWidth*2-1;
+                                   mouse.y=-(e.clientY/innerHeight)*2+1;
+                                   ray.setFromCamera(mouse,camera);
+                                   const hits=ray.intersectObjects(nodesG.children.filter(o=>o.userData.kind==="node"&&o.visible)); if(hits.length){hovered=hits[0].object.userData;tip.style.display="block";tip.style.left=e.clientX+12+"px";tip.style.top=e.clientY+12+"px";tip.innerHTML=`<b>${displayLabel(hovered)}</b><br>${hovered.status_label}<br>Pre ${hovered.pre_sum.toFixed(3)} · Post ${hovered.post_sum.toFixed(3)}<br>Post-Pre ${hovered.post_vs_pre_covid.toFixed(3)}`;} else {hovered=null;tip.style.display="none";}});
 addEventListener("click",()=>{if(hovered)setInfo(hovered)});
-addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
-function animate(){requestAnimationFrame(animate);controls.update();nodesG.children.forEach((o,i)=>{if(o.userData.kind==="ring"){const t=performance.now()*.001;o.rotation.x=t*.8+i;o.rotation.y=t*.5;}});renderer.render(scene,camera)} animate(); filter("all");
+addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;
+                               camera.updateProjectionMatrix();
+                               renderer.setSize(innerWidth,innerHeight)});
+function animate(){requestAnimationFrame(animate);
+                   controls.update();
+                   nodesG.children.forEach((o,i)=>{if(o.userData.kind==="ring"){const t=performance.now()*.001;o.rotation.x=t*.8+i;o.rotation.y=t*.5;}});
+                   renderer.render(scene,camera)} animate(); filter("all");
 </script>
 </body>
 </html>
