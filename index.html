@@ -23,7 +23,7 @@ body{margin:0;
   background:rgba(13,20,35,.92);
   border:1px solid rgba(255,255,255,.13);
   border-radius:16px;
-  padding:10px 12px;   /* 14px → 축소 */
+  padding:8px 10px;   /* 축소 */
   box-shadow:0 18px 44px rgba(0,0,0,.35);
 }
      
@@ -42,7 +42,7 @@ h2{
 #top{
   left:16px;
   top:16px;
-  width:860px;     /* 1200 → 축소 */
+  width:830px;     /* 축소 */
   display:block;
 }
 
@@ -66,11 +66,12 @@ button.active{background:#20e0cf;
 
 #legend{
   right:16px;
-  top:16px;        /* bottom 말고 top */
+  top:16px;       
   width:190px;     /* 150 → 190 */
   font-size:12px;
   color:#aab4c5;
 }     
+     
 #info{
   left:16px;
   bottom:16px;
@@ -93,7 +94,7 @@ b{color:#f3f6ff}
 #qtl{
   left:16px;
   bottom:16px;
-  width:300px;
+  width:350px;
   max-height:50vh;
   overflow:auto;
   font-size:12px;
@@ -111,25 +112,30 @@ b{color:#f3f6ff}
          gap:12px;
          align-items:center;
          margin-top:14px}
+     
 .qtl-orb{position:relative;
          width:80px;
          height:80px;
          border-radius:50%;
          background:radial-gradient(circle at 35% 30%, #8fffd1 0%, #00d084 35%, #087e5a 72%);
          box-shadow:0 0 32px rgba(0,208,132,.32)}
+     
 .qtl-orb:after{ inset:-10px;
          border:6px solid #00d084;}
+     
 .qtl-line{display:flex;
           align-items:center;
           gap:8px;
           margin:8px 0;
           line-height:1.35}
+     
 .qtl-dot{width:10px;
          height:10px;
          border-radius:50%;
          background:#00d084;
          display:inline-block;
          flex:none}
+     
 .qtl-dot.yellow{background:#ffb000}
   
 #tooltip{position:absolute;
@@ -138,11 +144,13 @@ b{color:#f3f6ff}
          border:1px solid rgba(255,255,255,.13);
          border-radius:10px;padding:8px 10px;
          font-size:12px;z-index:5}
+     
 .axisrow{display:grid;
          grid-template-columns:repeat(5,1fr);
          gap:4px;
          margin-top:8px;
          text-align:center} 
+     
 .axisrow span{padding:6px 4px;
               border:1px solid rgba(255,255,255,.13);
               border-radius:10px;
