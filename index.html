@@ -140,6 +140,7 @@ const labelPlugin = {
       ds.data.forEach(pt => {
         const d = pt.meta;
         if (d.status==="stable") return;
+        if (d.freq < 2 && d.status !== "decline") return;
         const xp=scales.x.getPixelForValue(pt.x);
         const yp=scales.y.getPixelForValue(pt.y);
         const r=pt.r||8;
